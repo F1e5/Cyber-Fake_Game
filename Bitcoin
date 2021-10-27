@@ -1,0 +1,77 @@
+import random
+print('\033[33m' + "₿[BITCOIN]₿" + '\033[0m')
+tim = int(input('Enter how many days you want : '))
+if tim == 0 :
+    print("Seriously?")
+d_m = 1000
+d = 1000
+z = 0
+while tim > 0 :
+    a = random.randrange(1, 3)
+    b = random.randrange(1, 801)
+    print('\033[96m' + "\nDays :", tim, "\nYour property :", d_m, "$", "\nLeft Bitcoins :", z, "" + '\033[0m', "\n")
+    if a == 1 :
+        print('\033[34m' + '-', b, '' + '\033[0m')
+        d-=b
+        print("➖Bitcoin's price is now", d, "$")
+    elif a == 2 :
+        print('\033[31m' + '+', b, '' + '\033[0m')
+        d+=b
+        print("➕Bitcoin's price is now", d, "$")
+    stbc = int(input('Your choice[1 : buy, 2 : Sell, 3 : Wait, 4 : ;) : '))
+    if stbc == 1 :
+        print("How many?, To buy as many as you can press 135")
+        x = int(input(':'))
+        if x <= 0 :
+            print("Nope")
+        elif x != 0 and x < 135 :
+            if d < 0 :
+                print("NOPE")
+                tim -= tim
+            d_m = d_m - int((d*x))
+            z += x
+        elif x == 135 :
+            if d < 0 :
+                print("NOPE")
+                tim -= tim
+            d_m = d_m - int(d_m/d)*d
+            z += int((1000-d_m)/d)
+        elif x > 135 :
+            print("no")
+        tim -= 1
+    elif stbc == 2 :
+        print("Nice choice but how many do you wanna sell?(to sell every stocks that you own : press 135)")
+        sl = int(input(':'))
+        if sl <= 0 :
+            print("Nope")
+        elif sl != 0 and sl < 135 :
+            d_m = d_m + (d * sl)
+            d_m = d_m - int(d_m*0.05)
+            b -= sl
+            if b < 0 :
+                print("You tried to cheat so, game over")
+                tim -= tim
+        elif sl == 135 :
+            d_m += d*z
+            d_m = d_m - int(d_m*0.05)
+            z -= z
+            if z < 0 :
+                print("You tried to cheat so, game over")
+                tim -= tim
+        elif sl > 135 :
+            print("no")
+        tim -= 1
+    elif stbc == 3 :
+        print("1 day later...")
+        tim-=1
+    elif stbc == 4 :
+        tim -= tim
+        print("Good bye")
+    else :
+        print("what?")
+if tim == 0 :
+    print("Last money :", d_m, "$", "\nLast stocks :", z)
+    if d_m > 1000000 :
+        print("Hmm, You're pretty good at stock? How about trying in real life")
+    else :
+        print("❌DONE❌")
