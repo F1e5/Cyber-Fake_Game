@@ -1,0 +1,65 @@
+#press ctrl + shift + f10 to start in IntelliJ
+import random
+print("💸Welcome to stock Market!💸")
+tim = int(input('Enter how many days you want : '))
+StC = input("Input company you want : ")
+if tim == 0 :
+    print("Seriously?")
+d_m = 1000
+b = 0
+while tim > 0 :
+    stp = random.randrange(1, 1001)
+    print("\n"*150)
+    print("=====================================================================\nDays :", tim, "           Your property :", d_m, "$", "           Stock counts :", b, "\n=====================================================================")
+    print("Do you wanna buy stock?", "For", "©", StC, "price is", stp, "$")
+    stbc = int(input('Your choice[1 : buy, 2 : Sell, 3 : Wait, 4 : ;) : '))
+    if stbc == 1 :
+        print("Nice choice but how many do you wanna buy?(to buy every stocks that you can buy : press 135)")
+        x = int(input(':'))
+        if x <= 0 :
+            print("Nope")
+        elif x != 0 and x < 135 :
+            d_m = d_m - int((stp*x))
+            b += x
+        elif x == 135 :
+            d_m = d_m - int(d_m/stp)*stp
+            b += int((1000-d_m)/stp)
+        elif x > 135 :
+            print("no")
+        tim -= 1
+    elif stbc == 2 :
+        print("Nice choice but how many do you wanna sell?(to sell every stocks that you own : press 135)")
+        sl = int(input(':'))
+        if sl <= 0 :
+            print("Nope")
+        elif sl != 0 and sl < 135 :
+            d_m = d_m + (stp * sl)
+            d_m = d_m - int(d_m*0.05)
+            b -= sl
+            if b < 0 :
+                print("You tried to cheat so, game over")
+                tim -= tim
+        elif sl == 135 :
+            d_m += stp*b
+            d_m = d_m - int(d_m*0.05)
+            b -= b
+            if b < 0 :
+                print("You tried to cheat so, game over")
+                tim -= tim
+        elif sl > 135 :
+            print("no")
+        tim -= 1
+    elif stbc == 3 :
+        print("1 day later...")
+        tim-=1
+    elif stbc == 4 :
+        tim -= tim
+        print("Good bye")
+    else :
+        print("what?")
+if tim == 0 :
+    print("Last money :", d_m, "$", "\nLast stocks :", b)
+    if d_m > 1000000 :
+        print("Hmm, You're pretty good at stock? How about trying in real life")
+    else :
+        print("❌DONE❌")
